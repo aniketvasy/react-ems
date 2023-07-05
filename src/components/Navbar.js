@@ -18,7 +18,7 @@ const pages = [
   { label: "Home", route: "/ems" },
   { label:"Add Employee", route:"/ems/add-employee"}
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = [{ label:"Logout", route:"/logout"}];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -39,7 +39,12 @@ function Navbar() {
     setAnchorElUser(null);
   };
   const handleRootNavigation = () => {
-    navigate("/");
+    navigate("/addemployee");
+    window.location.reload();
+  };
+
+  const handleLogoutNavigation = () => {
+    navigate("/logout");
     window.location.reload();
   };
 
@@ -172,7 +177,7 @@ function Navbar() {
               >
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                    <Typography textAlign="center" onClick={handleLogoutNavigation}>{setting.label}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
